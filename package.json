@@ -1,16 +1,16 @@
 {
-    "name": "com.yanicksenn.codegen",
-    "version": "1.0.0",
-    "displayName": "Codegen",
-    "description": "The code generation package for Unity projects.",
-    "unity": "6000.0",
-    "unityRelease": "51f1",
-    "author": {
-        "name": "Yanick Senn",
-        "email": "info@yanicksenn.com",
-        "url": "https://www.yanicksenn.com"
-    },
-    "dependencies": {
-        "com.yanicksenn.utils": "2.0.0"
-    }
+  "name": "com.yanicksenn.codegen",
+  "version": "1.0.1",
+  "displayName": "Codegen",
+  "description": "The code generation package for Unity projects.",
+  "unity": "6000.0",
+  "unityRelease": "51f1",
+  "author": {
+    "name": "Yanick Senn",
+    "email": "info@yanicksenn.com",
+    "url": "https://www.yanicksenn.com"
+  },
+  "dependencies": {
+    "com.yanicksenn.utils": "2.0.0"
+  }
 }
