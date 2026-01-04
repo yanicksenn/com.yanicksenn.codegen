@@ -1,6 +1,6 @@
 {
   "name": "com.yanicksenn.codegen",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "Codegen",
   "description": "The code generation package for Unity projects.",
   "unity": "6000.0",
