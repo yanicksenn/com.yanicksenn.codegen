@@ -10,10 +10,6 @@ namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
     public static class InjectionRegistryLinker {
 
         [DidReloadScripts]
-        private static void OnScriptsReloaded() {
-            LinkRegistries();
-        }
-
         private static void LinkRegistries() {
             var targetTypes = TypeCache.GetTypesWithAttribute<GenerateInjectionRegistryAttribute>();
             var outputDir = "Assets/Generated/Registries";
@@ -28,6 +24,11 @@ namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
                     LinkRegistryForType(type, outputDir);
                 }
             }
+        }
+
+        [MenuItem("Tools/Code Generation/Force Link Injection Registries")]
+        public static void ForceLink() {
+            LinkRegistries();
         }
 
         private static void LinkRegistryForType(Type type, string outputDir) {

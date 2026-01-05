@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEditor;
-using YanickSenn.CodeGen.Editor.Editor;
 
 namespace YanickSenn.CodeGen.Editor
 {
@@ -16,7 +15,7 @@ namespace YanickSenn.CodeGen.Editor
                 {
                     var settings = CodeGenConfiguration.GetSerializedSettings();
                     settings.Update();
-                    
+
                     EditorGUILayout.PropertyField(settings.FindProperty(nameof(CodeGenConfiguration.disableAutoCodeGeneration)));
 
                     settings.ApplyModifiedProperties();

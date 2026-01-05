@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using YanickSenn.Utils.Editor;
 
-namespace YanickSenn.CodeGen.Editor.Editor
+namespace YanickSenn.CodeGen.Editor
 {
     [CreateAssetMenu(fileName = "CodeGenConfiguration", menuName = "CodeGen/CodeGenConfiguration")]
     public class CodeGenConfiguration : ScriptableObject
@@ -19,10 +19,10 @@ namespace YanickSenn.CodeGen.Editor.Editor
             if (settings == null)
             {
                 FileUtils.CreateDirectoryIfNeeded("Assets/Settings");
-                
+
                 settings = CreateInstance<CodeGenConfiguration>();
                 settings.disableAutoCodeGeneration = false;
-                
+
                 AssetDatabase.CreateAsset(settings, SettingsPath);
                 AssetDatabase.SaveAssets();
             }

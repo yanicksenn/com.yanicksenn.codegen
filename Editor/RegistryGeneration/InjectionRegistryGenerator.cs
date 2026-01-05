@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
-using YanickSenn.CodeGen.Editor.Editor;
 using YanickSenn.Utils.Editor;
 using YanickSenn.Utils.RegistryGeneration;
 
@@ -30,7 +29,7 @@ namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
                     GenerateRegistryForType(type, outputDir);
                 }
             }
-            
+
             AssetDatabase.Refresh();
         }
 
@@ -46,7 +45,7 @@ namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
         public bool ShouldRetriggerGenerationForAsset(string assetPath) {
             return IsScriptableObject(assetPath);
         }
-        
+
 
         private static bool IsScriptableObject(string assetPath) {
             return assetPath.EndsWith(".asset", StringComparison.OrdinalIgnoreCase);
@@ -78,7 +77,7 @@ namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
             }
             sb.AppendLine("    }");
             sb.AppendLine();
-            
+
             foreach (var asset in assets) {
                 var fieldName = InjectionUtils.SanitizeName(asset.name);
                 sb.AppendLine($"    public {type.FullName} {fieldName};");
@@ -86,7 +85,7 @@ namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
 
             sb.AppendLine();
             sb.AppendLine("    public override void Install(IContainerBuilder builder) {");
-            
+
             foreach (var asset in assets) {
                 var fieldName = InjectionUtils.SanitizeName(asset.name);
                 sb.AppendLine($"        if ({fieldName} != null) {{");

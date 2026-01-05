@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using YanickSenn.CodeGen.Editor.Editor;
 
 namespace YanickSenn.CodeGen.Editor {
     public class CodeGenPostprocessor : AssetPostprocessor {
@@ -29,19 +28,24 @@ namespace YanickSenn.CodeGen.Editor {
                 }
             }
         }
-    
+
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) {
             if (CodeGenConfiguration.GetOrCreateSettings().disableAutoCodeGeneration) {
                 return;
             }
 
             foreach (var generator in Generators) {
-                if (importedAssets.Any(generator.ShouldRetriggerGenerationForAsset)
-                    || deletedAssets.Any(generator.ShouldRetriggerGenerationForAsset)
-                    || movedAssets.Any(generator.ShouldRetriggerGenerationForAsset)) {
+                if (ShouldRegenerate(importedAssets, deletedAssets, movedAssets, generator)) {
+                    generator.Clear();
                     generator.Generate();
-                }   
+                }
             }
+        }
+
+        private static bool ShouldRegenerate(string[] importedAssets, string[] deletedAssets, string[] movedAssets, IGenerator generator) {
+            return importedAssets.Any(generator.ShouldRegenerateForAsset)
+               || deletedAssets.Any(generator.ShouldRegenerateForAsset)
+               || movedAssets.Any(generator.ShouldRegenerateForAsset);
         }
     }
 }

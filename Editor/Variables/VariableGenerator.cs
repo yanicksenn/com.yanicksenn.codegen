@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Text;
 using UnityEditor;
-using UnityEditor.Callbacks;
 using UnityEngine;
 using YanickSenn.Utils.Variables;
 
@@ -11,16 +10,11 @@ namespace YanickSenn.CodeGen.Editor.Variables {
     [Generator]
     public class VariableGenerator : IGenerator {
 
-        [DidReloadScripts]
-        public static void OnScriptsReloaded() {
-            TriggerGeneration();
-        }
-
         [MenuItem("Tools/Code Generation/Force Generate Variables")]
         public static void TriggerGeneration() {
             new VariableGenerator().Generate();
         }
-        
+
         public void Generate() {
             var targetTypes = TypeCache.GetTypesWithAttribute<GenerateVariableAttribute>();
             var outputDir = "Assets/Generated/Variables";
@@ -36,7 +30,7 @@ namespace YanickSenn.CodeGen.Editor.Variables {
                     GenerateReferenceForType(type, outputDir);
                 }
             }
-            
+
             AssetDatabase.Refresh();
         }
 

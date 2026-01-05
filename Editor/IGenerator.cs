@@ -4,7 +4,11 @@ namespace YanickSenn.CodeGen.Editor
         void Generate();
         void Clear();
 
-        bool ShouldRetriggerGenerationForAsset(string assetPath) {
+        bool ShouldRegenerateForAsset(string assetPath) {
+            return false;
+        }
+
+        bool ShouldRegenerateForScriptCompilation() {
             return false;
         }
     }
