@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using YanickSenn.CodeGen.Attributes;
 using YanickSenn.Utils.Variables;
 
 namespace YanickSenn.CodeGen.Editor.Variables {
@@ -75,7 +76,6 @@ namespace YanickSenn.CodeGen.Editor.Variables {
         }
 
         private static void GenerateReferenceForType(Type type, string outputDir) {
-            var variableClassName = $"{type.Name}Variable";
             var className = $"{type.Name}Reference";
             var filePath = Path.Combine(outputDir, $"{className}.cs");
             var typeFullName = type.FullName.Replace('+', '.');
@@ -95,7 +95,7 @@ namespace YanickSenn.CodeGen.Editor.Variables {
             sb.AppendLine();
             sb.AppendLine("    [Generated]");
             sb.AppendLine("    [Serializable]");
-            sb.AppendLine($"    public class {className} : Reference<{typeFullName}, {variableClassName}> {{");
+            sb.AppendLine($"    public class {className} : Reference<{typeFullName}> {{");
             sb.AppendLine($"        public {className}({typeFullName} value = default) : base(value) {{ }}");
             sb.AppendLine("    }");
             sb.AppendLine("}");

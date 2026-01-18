@@ -19,7 +19,7 @@ namespace YanickSenn.CodeGen.Editor {
         }
 
         public void Generate() {
-            var outputDir = "Assets/Generated/Registries";
+            var outputDir = "Assets/Generated/EventRegistry";
             if (!Directory.Exists(outputDir)) {
                 Directory.CreateDirectory(outputDir);
             }
@@ -31,7 +31,7 @@ namespace YanickSenn.CodeGen.Editor {
         }
 
         public void Clear() {
-            var filePath = "Assets/Generated/Registries/EventRegistry.cs";
+            var filePath = "Assets/Generated/EventRegistry/EventRegistry.cs";
             if (File.Exists(filePath)) {
                 File.Delete(filePath);
                 File.Delete(filePath + ".meta");
@@ -102,6 +102,8 @@ namespace YanickSenn.CodeGen.Editor {
             sb.AppendLine("// </auto-generated>");
             sb.AppendLine();
             sb.AppendLine($"[Generated]");
+            var menuName = ObjectNames.NicifyVariableName(className);
+            sb.AppendLine($"[CreateAssetMenu(fileName = \"{className}\", menuName = \"Registry/{menuName}\")]");
             sb.AppendLine($"public class {className} : ScriptableObjectInstaller {{");
             sb.AppendLine();
 

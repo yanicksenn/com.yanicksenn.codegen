@@ -17,7 +17,7 @@ namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
         }
         public void Generate() {
             var targetTypes = TypeCache.GetTypesWithAttribute<GenerateInjectionRegistryAttribute>();
-            var outputDir = "Assets/Generated/Registries";
+            var outputDir = "Assets/Generated/InjectionRegistry";
 
             if (!Directory.Exists(outputDir)) {
                 Directory.CreateDirectory(outputDir);
@@ -34,7 +34,7 @@ namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
         }
 
         public void Clear() {
-            var outputDir = "Assets/Generated/Registries";
+            var outputDir = "Assets/Generated/InjectionRegistry";
             if (Directory.Exists(outputDir)) {
                 Directory.Delete(outputDir, true);
                 File.Delete(outputDir + ".meta");
@@ -57,6 +57,7 @@ namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
             var filePath = Path.Combine(outputDir, $"{className}.cs");
 
             var sb = new StringBuilder();
+            sb.AppendLine("using UnityEngine;");
             sb.AppendLine("using VContainer;");
             sb.AppendLine("using YanickSenn.CodeGen.Attributes;");
             sb.AppendLine("using YanickSenn.Utils;");
@@ -68,6 +69,8 @@ namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
             sb.AppendLine("// </auto-generated>");
             sb.AppendLine();
             sb.AppendLine($"[Generated]");
+            var menuName = ObjectNames.NicifyVariableName(className);
+            sb.AppendLine($"[CreateAssetMenu(fileName = \"{className}\", menuName = \"Registry/{menuName}\")]");
             sb.AppendLine($"public class {className} : YanickSenn.Utils.VContainer.ScriptableObjectInstaller {{");
             sb.AppendLine();
             sb.AppendLine("    public enum Keys {");
