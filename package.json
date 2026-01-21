@@ -1,6 +1,6 @@
 {
   "name": "com.yanicksenn.codegen",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "displayName": "Codegen",
   "description": "The code generation package for Unity projects.",
   "unity": "6000.0",
@@ -11,6 +11,6 @@
     "url": "https://www.yanicksenn.com"
   },
   "dependencies": {
-    "com.yanicksenn.utils": "2.0.0"
+    "com.yanicksenn.utils": "https://github.com/yanicksenn/com.yanicksenn.utils.git#2.0.5"
   }
 }
