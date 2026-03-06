@@ -3,8 +3,8 @@ using System.IO;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using YanickSenn.CodeGen.Attributes;
 using YanickSenn.Utils.Editor;
-using YanickSenn.Utils.RegistryGeneration;
 
 namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
 

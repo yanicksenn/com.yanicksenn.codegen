@@ -2,8 +2,8 @@ using System;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using YanickSenn.CodeGen.Attributes;
 using YanickSenn.Utils.Editor;
-using YanickSenn.Utils.RegistryGeneration;
 using YanickSenn.Utils.VContainer;
 
 namespace YanickSenn.CodeGen.Editor.RegistryGeneration {
